@@ -7,11 +7,11 @@ SELECT
     CASE 
         WHEN P.StandardCost > 0 THEN P.StandardCost
         WHEN PV.StandardPrice > 0 THEN PV.StandardPrice
-        ELSE 0  -- Or you can choose to handle this case differently
+        ELSE 0
     END AS EffectiveCost
 FROM 
     Production.Product P
 LEFT JOIN 
     Purchasing.ProductVendor PV ON P.ProductID = PV.ProductID
 WHERE 
-    NOT (P.StandardCost = 0 AND (PV.StandardPrice IS NULL OR PV.StandardPrice = 0));
+    NOT (P.StandardCost = 0 AND (PV.StandardPrice IS NULL OR PV.StandardPrice = 0))
